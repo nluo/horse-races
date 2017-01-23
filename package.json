@@ -1,0 +1,28 @@
+{
+  "name": "horse-races",
+  "version": "1.0.0",
+  "description": "An application display a list of upcoming horse races",
+  "main": "index.js",
+  "dependencies": {
+    "@types/express": "^4.0.35",
+    "cors": "^2.8.1",
+    "express": "^4.14.0",
+    "swagger-parser": "^3.4.1",
+    "swagger-tools": "^0.10.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "compile": "rm -rf server/js/* && tsc --sourcemap -p server/ts",
+    "start": "npm run compile && node server/js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nluo/horse-races.git"
+  },
+  "author": "Nick Luo <nick.luo@icloud.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/nluo/horse-races/issues"
+  },
+  "homepage": "https://github.com/nluo/horse-races#readme"
+}
