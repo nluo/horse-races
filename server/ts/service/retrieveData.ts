@@ -1,21 +1,8 @@
 import * as axios from 'axios'
 import deserilize from './deserilize'
 import * as _ from 'lodash'
+const objectRenameKeys = require('object-rename-keys')
 const baseBath = 'https://www.ladbrokes.com.au/api/actions'
-
-// interface Race {
-//     race_num: number,
-//     suspend: number,
-//     status: string,
-//     venue: string,
-
-// }
-// interface RaceResponse {
-//     meetings:
-// }
-// interface Meeting {
-//     name: 
-// }
 
 export async function getRacesWithCompetitors() {
     try {
@@ -38,22 +25,24 @@ export function getCompetitorsFromRace(race: any) {
         const competitors = deserilize(respone, 0, 'competitors')
 
         return competitors.map((competitor) => {
-            return _.pick(competitor, ['name', 'saddle_number'])
+            const changeKeys = {
+                saddle_number: 'saddleNumber',
+                jockey_name: 'jockeyName'
+            }
+            return objectRenameKeys(_.pick(competitor, ['name', 'saddle_number', 'jockey_name']), changeKeys)
         })
     })
 }
+
 export function getRaces() {
     const url = `${baseBath}/update?feeds[next5]`
     return axios.get(url).then((response: any) => {
-        try {
-            const meetings = deserilize(response, 0, 'meetings')
-            return _.slice(_.sortBy(
-                _.flatMap(meetings.map(getRacesFromMeeting)),
-                ['expired']
-            ), 0, 5)
-        } catch (error) {
-            throw error
-        }
+        const meetings = deserilize(response, 0, 'meetings')
+        // Return 5 races that is sorted by expired time 
+        return _.slice(_.sortBy(
+            _.flatMap(meetings.map(getRacesFromMeeting)),
+            ['expired']
+        ), 0, 5)
     })
 }
 
