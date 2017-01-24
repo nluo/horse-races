@@ -1,7 +1,7 @@
 import * as axios from 'axios'
 import deserilize from './deserilize'
 import * as _ from 'lodash'
-const objectRenameKeys = require('object-rename-keys')
+const renameKeys = require('object-rename-keys')
 const baseBath = 'https://www.ladbrokes.com.au/api/actions'
 
 export async function getRacesWithCompetitors() {
@@ -29,7 +29,7 @@ export function getCompetitorsFromRace(race: any) {
                 saddle_number: 'saddleNumber',
                 jockey_name: 'jockeyName'
             }
-            return objectRenameKeys(_.pick(competitor, ['name', 'saddle_number', 'jockey_name']), changeKeys)
+            return renameKeys(_.pick(competitor, ['name', 'saddle_number', 'jockey_name']), changeKeys)
         })
     })
 }
@@ -47,13 +47,20 @@ export function getRaces() {
 }
 
 function getRacesFromMeeting(meeting: any): any[] {
-    const common = _.pick(meeting, ['name', 'type', 'date', 'country'])
+    const changeKeys = {
+        name: 'venue'
+    }
+
+    const common = renameKeys(_.pick(meeting, ['name', 'type', 'date', 'country']), changeKeys)
+
     let events = _.toArray(meeting.events)
     return events.map((event: any) => {
         return _.assign({}, common, {
             eventId: event.id,
             raceNum: event.race_num,
-            expired: new Date(event.suspend * 1000)
+            expired: new Date(event.suspend * 1000),
+            description: event.description,
+            status: event.status
         })
     })
 }
