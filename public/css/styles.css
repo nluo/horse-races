@@ -1,0 +1,10 @@
+.icon {
+    background: url(/img/horses.png) no-repeat;
+    width: 24px;
+    height: 13px;
+    margin: 12px auto 9px auto;
+}
+
+.icon.horse {
+    background-position: -4px -235px;
+}

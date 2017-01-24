@@ -14,15 +14,7 @@ export function RaceList (props: any) {
                 {
                     props.races.map((race: any) => {
                         return (
-                            <ListItem
-                                key= {race.eventId}
-                                primaryText= {
-                                    <p> 
-                                        Location: {race.venue}&nbsp;&nbsp;
-                                        <h3>R{race.raceNum}</h3>
-                                    </p>
-                                }
-                                />
+                            <RaceListItem race={race} key={race.eventId}/>
                             )
                     })
                 }

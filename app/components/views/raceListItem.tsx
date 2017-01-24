@@ -7,11 +7,22 @@ import Avatar from 'material-ui/Avatar'
 
 export function RaceListItem (props: any) {
     const { race } =  props
-    console.log('the race is ', race)
     return (
         <ListItem
             key= {race.eventId}
-            primaryText={race.description}
+            primaryText= {
+                <div>
+                    <p>Venue: {race.venue}</p>
+                    <h4>R{race.raceNum}</h4>
+                </div>
+            }
+            secondaryText = {race.expired}
+            rightAvatar = {
+                <Avatar 
+                    size={ 60 }
+                > 
+                    {race.type} 
+                </Avatar>}
             />
     )
 }
