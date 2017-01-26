@@ -58,7 +58,7 @@ function getRacesFromMeeting(meeting: any): any[] {
         return _.assign({}, common, {
             eventId: event.id,
             raceNum: event.race_num,
-            expired: new Date(event.suspend * 1000),
+            expired: new Date(event.outcome * 1000),
             description: event.description,
             status: event.status
         })
