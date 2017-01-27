@@ -14,7 +14,7 @@ export function RaceList (props: any) {
                 {
                     props.races.map((race: any) => {
                         return (
-                            <RaceListItem race={race} key={race.eventId}/>
+                            <RaceListItem race={race} key={race.eventId} />
                             )
                     })
                 }

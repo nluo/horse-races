@@ -5,36 +5,25 @@ import { RaceList } from '../views/raceList'
 import * as RaceActions from '../../actions/raceActions'
 import * as _ from 'lodash'
 import * as moment from 'moment'
-
-function displayHumanizeTime (dateString: string) {
-    const now = moment()
-    const then = moment(dateString)
-    const diff = moment.duration(then.diff(now))
-    return diff.humanize()
-}
-
-function getLatestExpiredTimeForRaces(races: any) {
-    return races.map((race: any) => {
-        return _.assign({}, race, {
-            humanlizeExpiredTime: displayHumanizeTime(race.expired)
-        })
-    })
-}
+const humanizeDuration = require('humanize-duration')
 
 export class RaceListContainer extends React.Component<any, any> {
-    public interval: number
+    private updateRaceInterval: number
+    private fetchRaceInterval: number 
 
     constructor (props: any) {
         super(props)
     }
 
-    public async componentDidMount() {
+    async componentDidMount() {
         await RaceActions.getNext5Races()
-        this.interval = setInterval(function () {
-            this.setState({
-                races: getLatestExpiredTimeForRaces(this.props.races)
-            })
+        this.updateRaceInterval = setInterval(function () {
+            RaceActions.updateRaces(this.props.races)
         }.bind(this), 1000)
+
+        this.fetchRaceInterval = setInterval(function () {
+            RaceActions.getNext5Races()
+        }.bind(this), 30000)
     }
 
     render() {
@@ -43,9 +32,9 @@ export class RaceListContainer extends React.Component<any, any> {
 }
 
 
-const mapStateToProps = function (store: any) {
+const mapStateToProps = function (state: any) {
     return {
-        races: store.raceState.races
+        races: state.raceState.races
     }
 }
 
