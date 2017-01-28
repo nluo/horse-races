@@ -5,27 +5,46 @@ import { Card, CardActions, CardHeader, CardTitle, CardText } from 'material-ui/
 import { ListItem } from 'material-ui/List'
 import Avatar from 'material-ui/Avatar'
 
+import * as moment from 'moment'
+
 export function RaceDetail(props: any) {
     const { race } = props
     return (
         <div>
             <Card>
+                <CardTitle title="Race Detail"/>
                 <CardHeader
-                    title="URL Avatar"
-                    subtitle="Subtitle"
-                    avatar="images/jsa-128.jpg"
+                    title={
+                        <div>
+                            <p>Venue: {race.venue}, <em> Race {race.raceNum} </em> </p>
+                        </div>
+                    }
+                    subtitle={
+                        <span> Outcome: {moment(race.expired).format('MMMM Do YYYY, h:mm:ss a')} </span>
+                    }
+                    avatar={
+                        <Avatar
+                            size={60}
+                        >
+                            {race.type}
+                        </Avatar>
+                    }
                 />
+                <CardTitle title="Competitors"/>
                 <CardText>
                     {
                         race.competitors.map((competitor: any) => {
                             return <ListItem
-                                key={competitor.eventId}
-                                primaryText={
-                                    <span> {competitor.name} </span>
+                                key={competitor.saddleNumber}
+                                primaryText={competitor.name}
+                                secondaryText={
+                                    <div>
+                                        Jockey: {competitor.jockeyName}
+                                    </div>
                                 }
-                                leftAvatar={
+                                rightAvatar = {
                                     <Avatar
-                                        size={30}
+                                        size={50}
                                     >
                                         {competitor.saddleNumber}
                                     </Avatar>

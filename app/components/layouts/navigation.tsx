@@ -6,7 +6,6 @@ export function Navigation () {
         <nav>
           <AppBar
             title="Upcoming Horse Races"
-            iconClassNameRight="muidocs-icon-navigation-expand-more"
           />
         </nav>
     )

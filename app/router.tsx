@@ -9,6 +9,7 @@ import { MainLayout } from './components/layouts/mainLayout'
 export default (
   <Router history={ browserHistory }>
     <Route path="/" component={ MainLayout }>
+      <IndexRoute component={ RaceListContainer } />
       <Route path="/races" component = {RaceListContainer} />
       <Route path="/races/:eventId" component = { RaceDetailContainer } />
     </Route>

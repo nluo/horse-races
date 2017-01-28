@@ -26,6 +26,11 @@ export class RaceListContainer extends React.Component<any, any> {
         }.bind(this), 30000)
     }
 
+    componentWillUnmount() {
+        // clear the interval
+        clearInterval(this.fetchRaceInterval)
+    }
+
     render() {
         return <RaceList races={this.props.races} />
     }

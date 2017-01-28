@@ -30,7 +30,8 @@ export function RaceListItem(props: any) {
                     size={60}
                 >
                     {race.type}
-                </Avatar>}
+                </Avatar>
+            }
             onClick = {() => {
                 handleClick(race)
             }}
