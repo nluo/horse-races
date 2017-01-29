@@ -1,9 +1,12 @@
+import * as React from 'react'
 import IconButton from 'material-ui/IconButton'
 import ArrowLeft from 'material-ui/svg-icons/hardware/keyboard-arrow-left'
-import * as React from 'react'
+import { browserHistory } from 'react-router'
 
-export function BackButton (): React.ReactElement<any> {
+export default function BackButton(): React.ReactElement<any> {
     return (
-        <IconButton><ArrowLeft/></IconButton>
+        <IconButton onTouchTap={() => browserHistory.goBack()}>
+            <ArrowLeft color="white"></ArrowLeft>
+        </IconButton>
     )
 }

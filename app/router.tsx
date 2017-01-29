@@ -6,8 +6,15 @@ import { default as RaceDetailContainer } from './components/containers/RaceDeta
 // Layouts
 import { MainLayout } from './components/layouts/mainLayout'
 
+// Router redux
+import store from './store'
+
+import { syncHistoryWithStore } from 'react-router-redux'
+const history = syncHistoryWithStore(browserHistory, store)
+
+
 export default (
-  <Router history={ browserHistory }>
+  <Router history={ history }>
     <Route path="/" component={ MainLayout }>
       <IndexRoute component={ RaceListContainer } />
       <Route path="/races" component = {RaceListContainer} />

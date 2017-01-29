@@ -12,9 +12,6 @@ export function RaceDetail(props: any) {
     const { race } = props
     return (
         <div>
-            <a onClick={()=>{
-                browserHistory.goBack()
-            }}> Back </a>
             <Card>
                 <CardTitle title="Race Detail"/>
                 <CardHeader
