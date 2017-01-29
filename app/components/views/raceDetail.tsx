@@ -6,11 +6,15 @@ import { ListItem } from 'material-ui/List'
 import Avatar from 'material-ui/Avatar'
 
 import * as moment from 'moment'
+import { browserHistory } from 'react-router'
 
 export function RaceDetail(props: any) {
     const { race } = props
     return (
         <div>
+            <a onClick={()=>{
+                browserHistory.goBack()
+            }}> Back </a>
             <Card>
                 <CardTitle title="Race Detail"/>
                 <CardHeader

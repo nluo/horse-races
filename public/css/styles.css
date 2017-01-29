@@ -8,3 +8,16 @@
 .icon.horse {
     background-position: -4px -235px;
 }
+
+.fixed-nav-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  width: 100%;
+  height: auto;
+}
+
+.main-content {
+    margin-top: 64px;
+}

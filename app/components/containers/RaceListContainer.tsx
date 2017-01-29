@@ -15,20 +15,22 @@ export class RaceListContainer extends React.Component<any, any> {
         super(props)
     }
 
-    async componentDidMount() {
-        await RaceActions.getNext5Races()
+    componentDidMount() {
+        RaceActions.getNext5Races()
+
         this.updateRaceInterval = setInterval(function () {
             RaceActions.updateRaces(this.props.races)
         }.bind(this), 1000)
 
         this.fetchRaceInterval = setInterval(function () {
             RaceActions.getNext5Races()
-        }.bind(this), 30000)
+        }.bind(this), 50000)
     }
 
     componentWillUnmount() {
         // clear the interval
         clearInterval(this.fetchRaceInterval)
+        // clearInterval(this.updateRaceInterval)
     }
 
     render() {
