@@ -32,7 +32,6 @@ export class RaceListContainer extends React.Component<RaceListContainerProps, a
     componentWillUnmount() {
         // clear the interval
         clearInterval(this.fetchRaceInterval)
-        // clearInterval(this.updateRaceInterval)
     }
 
     render() {

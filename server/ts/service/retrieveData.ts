@@ -5,20 +5,18 @@ const renameKeys = require('object-rename-keys')
 const baseBath = 'https://www.ladbrokes.com.au/api/actions'
 
 export async function getRacesWithCompetitors() {
-    try {
-        const races = await getRaces()
-        return Promise.all(races.map(async (race) => {
-            let competitors = await getCompetitorsFromRace(race)
-            return _.assign({}, race, {
-                competitors: competitors
-            })
-        }))
-    } catch (error) {
-        throw error
-    }
+
+    const races = await getRaces()
+    return Promise.all(races.map(async (race) => {
+        let competitors = await getCompetitorsFromRace(race)
+        return _.assign({}, race, {
+            competitors: competitors
+        })
+    }))
 }
 
-export function getCompetitorsFromRace(race: any) {
+
+function getCompetitorsFromRace(race: any) {
     const url = `${baseBath}/update?feeds[competitors][event_id]=${race.eventId}`
 
     return axios.get(url).then((respone: any) => {
@@ -34,7 +32,7 @@ export function getCompetitorsFromRace(race: any) {
     })
 }
 
-export function getRaces() {
+function getRaces() {
     const url = `${baseBath}/update?feeds[next5]`
     return axios.get(url).then((response: any) => {
         const meetings = deserilize(response, 0, 'meetings')

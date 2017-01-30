@@ -43,7 +43,7 @@
   },
   "scripts": {
     "compile": "rm -rf server/js/* && node_modules/typescript/bin/tsc --sourcemap -p server/ts",
-    "start": "npm run compile && node server/js",
+    "backend": "npm run compile && node server/js",
     "frontend": "./node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline --history-api-fallback --content-base public/"
   },
   "repository": {
