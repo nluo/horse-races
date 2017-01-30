@@ -21,11 +21,11 @@ export class RaceListContainer extends React.Component<RaceListContainerProps, a
         RaceActions.getNext5Races()
 
         this.updateRaceInterval = setInterval(function () {
-            RaceActions.updateRaces(this.props.races)
+            this.props.handleUpdateRaces(this.props.races)
         }.bind(this), 1000)
 
         this.fetchRaceInterval = setInterval(function () {
-            this.props.handleUpdateRaces(this.props.races)
+            RaceActions.getNext5Races()
         }.bind(this), 50000)
     }
 
