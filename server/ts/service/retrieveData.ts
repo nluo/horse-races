@@ -4,7 +4,7 @@ import * as _ from 'lodash'
 const renameKeys = require('object-rename-keys')
 const baseBath = 'https://www.ladbrokes.com.au/api/actions'
 
-export async function getRacesWithCompetitors() {
+export async function getNext5RacesWithCompetitors() {
 
     const races = await getRaces()
     return Promise.all(races.map(async (race) => {
