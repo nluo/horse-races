@@ -1,11 +1,12 @@
-import { browserHistory } from 'react-router'
 import * as React from 'react'
+import { browserHistory } from 'react-router'
 
 import { ListItem } from 'material-ui/List'
 import Avatar from 'material-ui/Avatar'
 
 import store from '../../store'
 import * as RaceActions from '../../actions/raceActions'
+import { RaceHeader } from './RaceHeader'
 
 export function RaceListItem(props: RaceListItemProps) {
     const { race, handleRaceItemClick } = props
@@ -14,9 +15,7 @@ export function RaceListItem(props: RaceListItemProps) {
         <ListItem
             key={race.eventId}
             primaryText={
-                <div>
-                    <p>Venue: {race.venue}, {race.country} <em> R{race.raceNum} </em> </p>
-                </div>
+                <RaceHeader race={race} />
             }
             secondaryText={race.humanlizeExpiredTime}
             rightAvatar={

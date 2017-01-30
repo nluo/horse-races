@@ -8,6 +8,8 @@ import Avatar from 'material-ui/Avatar'
 import * as moment from 'moment'
 import { browserHistory } from 'react-router'
 
+import { RaceHeader } from './RaceHeader'
+
 export function RaceCardItem(props: RaceCardItemProps) {
     const { race } = props
     return (
@@ -16,9 +18,7 @@ export function RaceCardItem(props: RaceCardItemProps) {
                 <CardTitle title="Race Detail"/>
                 <CardHeader
                     title={
-                        <div>
-                            <p>Venue: {race.venue}, <em> Race {race.raceNum} </em> </p>
-                        </div>
+                        <RaceHeader race={race} />
                     }
                     subtitle={
                         <span> Outcome: {moment(race.expired).format('MMMM Do YYYY, h:mm:ss a')} </span>

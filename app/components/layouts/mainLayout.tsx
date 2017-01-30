@@ -7,7 +7,7 @@ export function MainLayout(props: any) {
         <div>
             <Navigation/>
             <div className="row">
-                <div className="col-xs-12 col-md-offset-1 col-md-10">
+                <div className="col-md-offset-1 col-md-10">
                     <main className="main-content">
                         {props.children}
                     </main>
