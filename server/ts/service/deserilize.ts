@@ -1,10 +1,10 @@
 export default function deserilize(
     response: any,
-    resouceIndex: number,
+    resourceIndex: number,
     resourceName: string
 ): any[] {
     try {
-        return response.data.updates[resouceIndex].data[resourceName]
+        return response.data.updates[resourceIndex].data[resourceName]
     } catch (error) {
         throw error
     }

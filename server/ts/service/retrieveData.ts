@@ -4,9 +4,9 @@ import * as _ from 'lodash'
 const renameKeys = require('object-rename-keys')
 const baseBath = 'https://www.ladbrokes.com.au/api/actions'
 
-export async function getNext5RacesWithCompetitors() {
+export async function getNextRacesWithCompetitors(numberOfRaces: number) {
 
-    const races = await getRaces()
+    const races = await getRaces(numberOfRaces)
     return Promise.all(races.map(async (race) => {
         let competitors = await getCompetitorsFromRace(race)
         return _.assign({}, race, {
@@ -19,8 +19,8 @@ export async function getNext5RacesWithCompetitors() {
 function getCompetitorsFromRace(race: any) {
     const url = `${baseBath}/update?feeds[competitors][event_id]=${race.eventId}`
 
-    return axios.get(url).then((respone: any) => {
-        const competitors = deserilize(respone, 0, 'competitors')
+    return axios.get(url).then((response: any) => {
+        const competitors = deserilize(response, 0, 'competitors')
 
         return competitors.map((competitor) => {
             const changeKeys = {
@@ -32,7 +32,7 @@ function getCompetitorsFromRace(race: any) {
     })
 }
 
-function getRaces() {
+function getRaces(numberOfRaces: number) {
     const url = `${baseBath}/update?feeds[next5]`
     return axios.get(url).then((response: any) => {
         const meetings = deserilize(response, 0, 'meetings')
@@ -40,7 +40,7 @@ function getRaces() {
         return _.slice(_.sortBy(
             _.flatMap(meetings.map(getRacesFromMeeting)),
             ['expired']
-        ), 0, 5)
+        ), 0, numberOfRaces)
     })
 }
 
@@ -48,11 +48,10 @@ function getRacesFromMeeting(meeting: any): any[] {
     const changeKeys = {
         name: 'venue'
     }
-
+    // Cherry pick object properties and rename object key 'name' to 'venue'
     const common = renameKeys(_.pick(meeting, ['name', 'type', 'date', 'country']), changeKeys)
 
-    let events = _.toArray(meeting.events)
-    return events.map((event: any) => {
+    return _.toArray(meeting.events).map((event: any) => {
         return _.assign({}, common, {
             eventId: event.id,
             raceNum: event.race_num,

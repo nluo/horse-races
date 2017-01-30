@@ -1,4 +1,4 @@
-import { getNext5RacesWithCompetitors } from '../service/retrieveData'
+import { getNextRacesWithCompetitors } from '../service/retrieveData'
 
 export default function (router) {
   router.use('/heartbeat', function (req, res, next) {
@@ -7,7 +7,8 @@ export default function (router) {
 
   router.use('/races', async function (req, res, next) {
     try {
-      const races = await getNext5RacesWithCompetitors()
+      // Get next 5 races
+      const races = await getNextRacesWithCompetitors(5)
       return res.json(races)
     } catch (error) {
       return next(error)

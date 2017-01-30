@@ -36,7 +36,8 @@ This will start the webpack dev server on http://localhost:8080
 
 ### Service/retrieveData
 
-Service to talk to 3rd Party API to retrieve the latest horse races and return a list of 5 races sorted by expired time, done in functional style without side effects
+A service to talk to 3rd Party API to retrieve the latest horse races and transform the the response to a list of 5 races (with competitors) sorted by expired time, this service and data transformation are done
+in functional style without side effects.
 
 ## Frontend project structures
 
@@ -61,4 +62,4 @@ They are all pure functions that takes an action and return a new state (with Ob
 3. Finish dockerize the app (Already dockerize the backend)
 4. Unit Test
 5. Display API error and loading status
-
+6. More sorting on the frontend? e.g. Race type
