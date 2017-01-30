@@ -5,7 +5,7 @@ import { List, ListItem } from 'material-ui/List'
 import Avatar from 'material-ui/Avatar'
 import Subheader from 'material-ui/Subheader'
 
-import { RaceListItem } from './raceListItem'
+import { RaceListItem } from './RaceListItem'
 
 export function RaceList (props: any) {
     return (

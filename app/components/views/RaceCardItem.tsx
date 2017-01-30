@@ -8,7 +8,7 @@ import Avatar from 'material-ui/Avatar'
 import * as moment from 'moment'
 import { browserHistory } from 'react-router'
 
-export function RaceDetail(props: any) {
+export function RaceCardItem(props: RaceCardItemProps) {
     const { race } = props
     return (
         <div>

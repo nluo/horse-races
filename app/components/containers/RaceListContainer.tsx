@@ -1,13 +1,13 @@
 import * as React from 'react'
 import { connect } from 'react-redux'
 
-import { RaceList } from '../views/raceList'
+import { RaceList } from '../views/RaceList'
 import * as RaceActions from '../../actions/raceActions'
 import * as _ from 'lodash'
 import * as moment from 'moment'
 const humanizeDuration = require('humanize-duration')
 
-export class RaceListContainer extends React.Component<any, any> {
+export class RaceListContainer extends React.Component<RaceListContainerProps, any> {
     private updateRaceInterval: number
     private fetchRaceInterval: number 
 

@@ -2,11 +2,11 @@ import * as React from 'react'
 import { connect } from 'react-redux'
 import * as RaceActions from '../../actions/raceActions'
 import * as _ from 'lodash'
-import { RaceDetail } from '../views/raceDetail'
+import { RaceCardItem } from '../views/RaceCardItem'
 
-export function RaceDetailContainer (props: any) {
+export function RaceDetailContainer (props: RaceCardItemProps) {
     return (
-        <RaceDetail {...props} />
+        <RaceCardItem {...props} />
     )
 }
 
