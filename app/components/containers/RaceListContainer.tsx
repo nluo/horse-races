@@ -25,7 +25,7 @@ export class RaceListContainer extends React.Component<RaceListContainerProps, a
         }.bind(this), 1000)
 
         this.fetchRaceInterval = setInterval(function () {
-            RaceActions.getNext5Races()
+            this.props.handleUpdateRaces()
         }.bind(this), 50000)
     }
 
@@ -52,6 +52,9 @@ const mapDispatchToProps = function (dispatch: any) {
         handleRaceItemClick: (race: Race) => {
             dispatch(RaceActions.clickRace(race))
             browserHistory.push(`/races/${race.eventId}`)
+        },
+        handleUpdateRaces: () => {
+            dispatch(RaceActions.updateRaces)
         }
     }
 }

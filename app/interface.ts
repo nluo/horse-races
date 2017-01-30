@@ -30,9 +30,14 @@ interface RaceCardItemProps {
 
 interface RaceListContainerProps {
     races: Race[],
-    handleRaceItemClick: handleRaceItemClickFn
+    handleRaceItemClick: handleRaceItemClickFn,
+    handleUpdateRaces: handleUpdateRaces
 }
 
 interface handleRaceItemClickFn {
     (race: Race): void
+}
+
+interface handleUpdateRaces {
+    (): void
 }
