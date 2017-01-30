@@ -26,10 +26,10 @@ function displayHumanizeTime (dateString: string): string {
 }
 
 export function clickRace(race: any) {
-    return store.dispatch({
+    return {
         type: types.CLICK_RACE,
         payload: race
-    })
+    }
 }
 
 function getLatestExpiredTimeForRaces(races: any) {

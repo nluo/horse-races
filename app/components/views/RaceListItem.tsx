@@ -7,14 +7,8 @@ import Avatar from 'material-ui/Avatar'
 import store from '../../store'
 import * as RaceActions from '../../actions/raceActions'
 
-
-function handleClick(race: Race) {
-    RaceActions.clickRace(race)
-    return browserHistory.push(`/races/${race.eventId}`)
-}
-
 export function RaceListItem(props: RaceListItemProps) {
-    const { race } = props
+    const { race, handleRaceItemClick } = props
 
     return (
         <ListItem
@@ -33,7 +27,7 @@ export function RaceListItem(props: RaceListItemProps) {
                 </Avatar>
             }
             onClick = {() => {
-                handleClick(race)
+                handleRaceItemClick(race)
             }}
         />
     )

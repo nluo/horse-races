@@ -20,7 +20,8 @@ interface Competitor {
 
 
 interface RaceListItemProps {
-    race: Race
+    race: Race,
+    handleRaceItemClick: handleRaceItemClickFn
 }
 
 interface RaceCardItemProps {
@@ -28,5 +29,10 @@ interface RaceCardItemProps {
 }
 
 interface RaceListContainerProps {
-    races: Race[]
+    races: Race[],
+    handleRaceItemClick: handleRaceItemClickFn
+}
+
+interface handleRaceItemClickFn {
+    (race: Race): void
 }

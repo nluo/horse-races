@@ -7,14 +7,18 @@ import Subheader from 'material-ui/Subheader'
 
 import { RaceListItem } from './RaceListItem'
 
-export function RaceList (props: any) {
+export function RaceList (props: RaceListContainerProps) {
     return (
         <div>
             <List>
                 {
-                    props.races.map((race: any) => {
+                    props.races.map((race: Race) => {
                         return (
-                            <RaceListItem race={race} key={race.eventId} />
+                            <RaceListItem 
+                                key={race.eventId} 
+                                race={race} 
+                                handleRaceItemClick={props.handleRaceItemClick} 
+                                />
                             )
                     })
                 }

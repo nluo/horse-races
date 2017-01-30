@@ -44,7 +44,7 @@
   "scripts": {
     "compile": "rm -rf server/js/* && node_modules/typescript/bin/tsc --sourcemap -p server/ts",
     "start": "npm run compile && node server/js",
-    "devServer": "./node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline --history-api-fallback --content-base public/"
+    "frontend": "./node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline --history-api-fallback --content-base public/"
   },
   "repository": {
     "type": "git",

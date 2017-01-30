@@ -16,8 +16,6 @@ const raceReducer = function (state = initialState, action: any) {
             return _.assign({}, state, {
                 visibleRace: action.payload
             })
-        case LOCATION_CHANGE:
-            console.log('location change, action is ', action)
     }
     return state
 } 

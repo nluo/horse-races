@@ -7,6 +7,8 @@ import * as _ from 'lodash'
 import * as moment from 'moment'
 const humanizeDuration = require('humanize-duration')
 
+import { browserHistory } from 'react-router'
+
 export class RaceListContainer extends React.Component<RaceListContainerProps, any> {
     private updateRaceInterval: number
     private fetchRaceInterval: number 
@@ -34,7 +36,7 @@ export class RaceListContainer extends React.Component<RaceListContainerProps, a
     }
 
     render() {
-        return <RaceList races={this.props.races} />
+        return <RaceList {...this.props} />
     }
 }
 
@@ -45,4 +47,13 @@ const mapStateToProps = function (state: any) {
     }
 }
 
-export default connect(mapStateToProps)(RaceListContainer)
+const mapDispatchToProps = function (dispatch: any) {
+    return {
+        handleRaceItemClick: (race: Race) => {
+            dispatch(RaceActions.clickRace(race))
+            browserHistory.push(`/races/${race.eventId}`)
+        }
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(RaceListContainer)
