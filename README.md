@@ -1,6 +1,8 @@
 # Live Upcoming Horse Races
 An application written in React/Redux and Node.js with Typescript to display 5 upcoming horse races
 
+![Alt text](https://github.com/nluo/horse-races/blob/screenshot/screenshots/horse-race-screenshot-1.png "Screenshot 1")
+
 ## Get Start/Development mode
 
 Clone the repo
