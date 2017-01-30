@@ -32,13 +32,6 @@ npm run frontend
 
 This will start the webpack dev server on http://localhost:8080
 
-## Backend project structures
-
-### Service/retrieveData
-
-A service to talk to 3rd Party API to retrieve the latest horse races and transform the the response to a list of 5 races (with competitors) sorted by expired time, this service and data transformation are done
-in functional style without side effects.
-
 ## Frontend project structures
 
 ### Components/Views
@@ -54,6 +47,68 @@ Stateless components that define the application layout and navigation
 ### Reducers
 They are all pure functions that takes an action and return a new state (with Object.assign)
 
+
+## Backend project structures
+
+### Service/retrieveData
+
+A service to talk to 3rd Party API to retrieve the latest horse races and transform the the response to a list of 5 races (with competitors) sorted by expired time, this service and data transformation are done
+in functional style without side effects. The transformed data looks something like this:
+```javascript
+[{
+    type: "G",
+    date: "2017-01-31",
+    country: "USA",
+    venue: "Palm Beach Matinee",
+    eventId: 28191968,
+    raceNum: 11,
+    expired: "2017-01-30T20:39:01.000Z",
+    description: "Race 11",
+    status: "open",
+    competitors: [
+        {
+            name: "Oya Dennis Wayne",
+            saddleNumber: 1,
+            jockeyName: "-"
+        },
+        {
+            name: "Js Bust A Move",
+            saddleNumber: 2,
+            jockeyName: "-"
+        },
+        {
+            name: "Babette's Feast",
+            saddleNumber: 3,
+            jockeyName: "-"
+        },
+        {
+            name: "Ann Coulter",
+            saddleNumber: 4,
+            jockeyName: "-"
+        },
+        {
+            name: "Bs Grits",
+            saddleNumber: 5,
+            jockeyName: "-"
+        },
+        {
+            name: "Blacktie",
+            saddleNumber: 6,
+            jockeyName: "-"
+        },
+        {
+            name: "Jw Doc Wormbog",
+            saddleNumber: 7,
+            jockeyName: "-"
+        },
+        {
+            name: "Rainbow Warrior",
+            saddleNumber: 8,
+            jockeyName: "-"
+        }
+    ]
+}]
+```
 
 ## Todo
 
