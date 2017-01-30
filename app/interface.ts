@@ -39,5 +39,5 @@ interface handleRaceItemClickFn {
 }
 
 interface handleUpdateRaces {
-    (): void
+    (races: Race[]): void
 }

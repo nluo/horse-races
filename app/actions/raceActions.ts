@@ -12,11 +12,11 @@ export function clickRace(race: any) {
     }
 }
 
-export function updateRaces(races: any) {
-    return store.dispatch({
+export function updateRaces(races: Race[]) {
+    return {
         type: types.GET_RACES_SUCCESS,
         payload: getLatestExpiredTimeForRaces(races)
-    })
+    }
 }
 
 export function getNext5Races() {
