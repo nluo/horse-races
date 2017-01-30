@@ -14,12 +14,15 @@ export function clickRace(race: any) {
 
 export function updateRaces(races: Race[]) {
     return {
-        type: types.GET_RACES_SUCCESS,
+        type: types.UPDATE_RACES_TIMER,
         payload: getLatestExpiredTimeForRaces(races)
     }
 }
 
 export function getNext5Races() {
+    store.dispatch({
+        type: types.REQUEST_RACES
+    })
     return axios.get(url).then((response: any) => {
         return store.dispatch({
             type: types.GET_RACES_SUCCESS,

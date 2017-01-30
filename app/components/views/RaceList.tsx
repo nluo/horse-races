@@ -6,23 +6,29 @@ import Avatar from 'material-ui/Avatar'
 import Subheader from 'material-ui/Subheader'
 
 import { RaceListItem } from './RaceListItem'
+import CircularProgress from 'material-ui/CircularProgress'
 
-export function RaceList (props: RaceListContainerProps) {
+export function RaceList(props: RaceListContainerProps) {
+
     return (
-        <div>
-            <List>
-                {
-                    props.races.map((race: Race) => {
-                        return (
-                            <RaceListItem 
-                                key={race.eventId} 
-                                race={race} 
-                                handleRaceItemClick={props.handleRaceItemClick} 
-                                />
-                            )
-                    })
-                }
-            </List>
-        </div>
+        props.isFetching ? (
+            <CircularProgress size={100}/>
+        ) : (
+                <div>
+                    <List>
+                        {
+                            props.races.map((race: Race) => {
+                                return (
+                                    <RaceListItem
+                                        key={race.eventId}
+                                        race={race}
+                                        handleRaceItemClick={props.handleRaceItemClick}
+                                    />
+                                )
+                            })
+                        }
+                    </List>
+                </div>
+            )
     )
 }

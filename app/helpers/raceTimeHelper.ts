@@ -8,7 +8,7 @@ export function displayHumanizeTime (dateString: string): string {
     var diffSeconds = now.diff(then, 'milliseconds');
 
     if (diffSeconds > 0) {
-        return 'Closed'
+        return 'Soon'
     }
 
     return humanizeDuration(diffSeconds, {

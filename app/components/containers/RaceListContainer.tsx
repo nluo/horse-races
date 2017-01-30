@@ -41,7 +41,8 @@ export class RaceListContainer extends React.Component<RaceListContainerProps, a
 
 const mapStateToProps = function (state: any) {
     return {
-        races: state.raceState.races
+        races: state.raceState.races,
+        isFetching: state.raceState.isFetching
     }
 }
 

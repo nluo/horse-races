@@ -5,3 +5,6 @@ export const GET_RACES_ERROR = 'GET_RACES_ERROR'
 export const UPDATE_RACES = 'UPDATE_RACES'
 export const FETCH_RACES = 'FETCH_RACES'
 export const CLICK_RACE = 'CLICK_RACE'
+export const REQUEST_RACES = 'REQUEST_RACES'
+
+export const UPDATE_RACES_TIMER = 'UPDATE_RACES_TIMER'

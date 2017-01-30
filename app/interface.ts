@@ -31,7 +31,8 @@ interface RaceCardItemProps {
 interface RaceListContainerProps {
     races: Race[],
     handleRaceItemClick: handleRaceItemClickFn,
-    handleUpdateRaces: handleUpdateRaces
+    handleUpdateRaces: handleUpdateRaces,
+    isFetching: boolean
 }
 
 interface handleRaceItemClickFn {
@@ -40,4 +41,10 @@ interface handleRaceItemClickFn {
 
 interface handleUpdateRaces {
     (races: Race[]): void
+}
+
+interface RaceState {
+    races: Race [],
+    visibleRace: Race | Object,
+    isFetching: boolean
 }
