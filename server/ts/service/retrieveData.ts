@@ -7,7 +7,7 @@ const baseBath = 'https://www.ladbrokes.com.au/api/actions'
 export async function getNextRacesWithCompetitors(numberOfRaces: number) {
 
     const races = await getRaces(numberOfRaces)
-    return Promise.all(races.map(async (race) => {
+    return Promise.all(races.map(async (race: Race) => {
         let competitors = await getCompetitorsFromRace(race)
         return _.assign({}, race, {
             competitors: competitors
@@ -16,7 +16,7 @@ export async function getNextRacesWithCompetitors(numberOfRaces: number) {
 }
 
 
-function getCompetitorsFromRace(race: any) {
+function getCompetitorsFromRace(race: Race) {
     const url = `${baseBath}/update?feeds[competitors][event_id]=${race.eventId}`
 
     return axios.get(url).then((response: any) => {
@@ -44,14 +44,14 @@ function getRaces(numberOfRaces: number) {
     })
 }
 
-function getRacesFromMeeting(meeting: any): any[] {
+function getRacesFromMeeting(meeting: Meeting): Race[] {
     const changeKeys = {
         name: 'venue'
     }
     // Cherry pick object properties and rename object key 'name' to 'venue'
     const common = renameKeys(_.pick(meeting, ['name', 'type', 'date', 'country']), changeKeys)
 
-    return _.toArray(meeting.events).map((event: any) => {
+    return _.toArray(meeting.events).map((event: Event) => {
         return _.assign({}, common, {
             eventId: event.id,
             raceNum: event.race_num,
