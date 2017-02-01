@@ -11,24 +11,26 @@ import CircularProgress from 'material-ui/CircularProgress'
 export function RaceList(props: RaceListContainerProps) {
 
     return (
-        props.isFetching ? (
-            <CircularProgress size={100}/>
-        ) : (
-                <div>
-                    <List>
-                        {
-                            props.races.map((race: Race) => {
-                                return (
-                                    <RaceListItem
-                                        key={race.eventId}
-                                        race={race}
-                                        handleRaceItemClick={props.handleRaceItemClick}
-                                    />
-                                )
-                            })
-                        }
-                    </List>
-                </div>
-            )
+        <div>
+            {
+                props.isFetching ? (
+                    <CircularProgress size={100} />
+                ) : null
+            }
+            <List>
+                {
+                    props.races.map((race: Race) => {
+                        return (
+                            <RaceListItem
+                                key={race.eventId}
+                                race={race}
+                                handleRaceItemClick={props.handleRaceItemClick}
+                            />
+                        )
+                    })
+                }
+            </List>
+        </div >
+
     )
 }
