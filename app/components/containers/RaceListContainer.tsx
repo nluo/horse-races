@@ -9,7 +9,7 @@ const humanizeDuration = require('humanize-duration')
 
 import { browserHistory } from 'react-router'
 
-export class RaceListContainer extends React.Component<RaceListContainerProps, any> {
+export class RaceListContainer extends React.Component<RaceListContainerProps, RaceState> {
     private updateRaceInterval: number
     private fetchRaceInterval: number 
 
