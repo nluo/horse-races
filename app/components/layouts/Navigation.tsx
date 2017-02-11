@@ -1,6 +1,6 @@
 import * as React from 'react'
 import AppBar from 'material-ui/AppBar'
-import BackButton from '../elements/backButton'
+import BackButton from '../elements/BackButton'
 
 import { connect } from 'react-redux'
 

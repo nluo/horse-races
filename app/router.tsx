@@ -4,7 +4,7 @@ import { default as RaceListContainer } from './components/containers/RaceListCo
 import { default as RaceDetailContainer } from './components/containers/RaceDetailContainer'
 
 // Layouts
-import { MainLayout } from './components/layouts/mainLayout'
+import { MainLayout } from './components/layouts/MainLayout'
 
 // Router redux
 import store from './store'
