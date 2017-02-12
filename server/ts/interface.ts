@@ -43,6 +43,7 @@ interface Race {
     eventId: number,
     raceNum: number,
     expired: string,
+    expiredAt: string,
     description: string,
     status: string,
     humanlizeExpiredTime?: string,

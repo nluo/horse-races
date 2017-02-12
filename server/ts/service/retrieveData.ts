@@ -15,12 +15,9 @@ export async function getNextRacesWithCompetitors(numberOfRaces: number) {
     const raceKeys = await getRaceKeysFromCache()
 
     const racesFromCache = await Promise.all(raceKeys.map(getRaceFromCache))
-
-    // console.log('Redis races is ', racesFromCache)
-    
-    if (racesFromCache.length >  0) {
-        console.log('races from cached!')
-        return racesFromCache
+    console.log('length is ', racesFromCache.length)
+    if (racesFromCache.length  === numberOfRaces) {
+        return await Promise.all(raceKeys.map(getRaceFromCache))
     }
     const racesWithCompetitors = await Promise.all(races.map(async (race: Race) => {
         let competitors = await getCompetitorsFromRace(race)
@@ -29,7 +26,9 @@ export async function getNextRacesWithCompetitors(numberOfRaces: number) {
         })
     }))
     await Promise.all(racesWithCompetitors.map((race: Race) => {
-        return setRaceIntoCache(race)
+        return setRaceIntoCache(race).then(() => {
+            return setKeyWithExpireTime(race)
+        })
     }))
 
     return racesWithCompetitors
@@ -70,7 +69,7 @@ function getRaceFromCache (key: string) {
             if (error) {
                 return reject(error)
             }
-            console.log('the response from get is ', response)
+
             return resolve(JSON.parse(response))
         })
     })
@@ -83,6 +82,20 @@ function setRaceIntoCache(race: Race) {
                 return reject(error)
             }
             return resolve(results)
+        })
+    }) 
+}
+
+function setKeyWithExpireTime(race: Race) {
+    return new Promise((resolve, reject) => {
+        client.expireat(`race:${race.eventId}`, race.expiredAt + 30, (error, result) => {
+            if (error) {
+                return reject(error)
+            }
+            if (result === 0) {
+                return reject(new Error(`Unable to set expire time for key race:${race.eventId}`))
+            }
+            return resolve(result)
         })
     }) 
 }
@@ -112,6 +125,7 @@ function getRacesFromMeeting(meeting: Meeting): Race[] {
             eventId: event.id,
             raceNum: event.race_num,
             expired: new Date(event.outcome * 1000),
+            expiredAt: event.outcome,
             description: event.description,
             status: event.status
         })
