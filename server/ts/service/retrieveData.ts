@@ -88,7 +88,7 @@ function setRaceIntoCache(race: Race) {
 
 function setKeyWithExpireTime(race: Race) {
     return new Promise((resolve, reject) => {
-        client.expireat(`race:${race.eventId}`, race.expiredAt + 30, (error, result) => {
+        client.expireat(`race:${race.eventId}`, race.expiredAt + 180, (error, result) => {
             if (error) {
                 return reject(error)
             }
