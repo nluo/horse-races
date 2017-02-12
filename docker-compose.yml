@@ -7,4 +7,4 @@ web:
 redis:
   image: redis
   ports:
-     - "7379:6379"
+     - "6379:6379"
