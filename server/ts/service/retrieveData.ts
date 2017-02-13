@@ -15,8 +15,9 @@ export async function getNextRacesWithCompetitors(numberOfRaces: number) {
     const raceKeys = await getRaceKeysFromCache()
 
     const racesFromCache = await Promise.all(raceKeys.map(getRaceFromCache))
-    console.log('length is ', racesFromCache.length)
+
     if (racesFromCache.length  === numberOfRaces) {
+        console.log('races from cache!!!!')
         return await Promise.all(raceKeys.map(getRaceFromCache))
     }
     const racesWithCompetitors = await Promise.all(races.map(async (race: Race) => {
@@ -64,14 +65,8 @@ function getRaceKeysFromCache(): Promise<[string]> {
 }
 
 function getRaceFromCache (key: string) {
-    return new Promise((resolve, reject) => {
-        client.get(key, (error, response) => {
-            if (error) {
-                return reject(error)
-            }
-
-            return resolve(JSON.parse(response))
-        })
+    return promsify(client.get.bind(client, key)).then((response: string) => {
+        return JSON.parse(response)
     })
 }
 
@@ -98,6 +93,17 @@ function setKeyWithExpireTime(race: Race) {
             return resolve(result)
         })
     }) 
+}
+
+function promsify (fn: Function) {
+    return new Promise((resolve, reject) => {
+        fn.call(null, function (error, result) {
+            if (error) {
+                return reject(error)
+            }
+            return resolve(result)
+        })
+    })
 }
 
 
